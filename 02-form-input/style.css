@@ -121,3 +121,75 @@ button:disabled {
     font-size: 1.2rem;
     font-weight: 700;
 }
+
+/* Password field wrapper for positioning the toggle button */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 75px !important;
+    /* Space for the show/hide button */
+}
+
+button.toggle-btn,
+#togglePassword {
+    position: absolute !important;
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 4px 8px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #818cf8 !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+button.toggle-btn:hover,
+#togglePassword:hover {
+    color: #a7f3d0 !important;
+    background: transparent !important;
+}
+
+#submitBtn {
+    margin-top: 15px;
+}
+
+/* Error message styling */
+.error-msg {
+    display: block;
+    color: #f43f5e;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 18px;
+}
+
+/* Greeting display message */
+.greeting-display {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Validation Feedback States */
+input.valid {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+input.invalid {
+    border-color: #f43f5e !important;
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.3);
+}

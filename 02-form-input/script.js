@@ -1,65 +1,135 @@
 // Select DOM elements
 const userForm = document.getElementById('userForm');
 const usernameInput = document.getElementById('username');
-const errorMsg = document.getElementById('errorMsg');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+
+const usernameError = document.getElementById('usernameError');
+const emailError = document.getElementById('emailError');
+const passwordError = document.getElementById('passwordError');
+
+const togglePasswordBtn = document.getElementById('togglePassword');
+
 const submitBtn = document.getElementById('submitBtn');
 const greetingDisplay = document.getElementById('greetingDisplay');
 
 // Validation rule configuration
 const MIN_LENGTH = 3;
+const MIN_PASSWORD_LENGTH = 6;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Validates the username input field
  * @returns {boolean} True if input is valid, false otherwise
  */
+/**
+ * Validates the Email field using Regex
+ */
+function validateEmail() {
+    const value = emailInput.value.trim();
+
+    if (value === '') {
+        emailInput.classList.remove('valid', 'invalid');
+        emailError.textContent = '';
+        return false;
+    }
+
+    if (!EMAIL_REGEX.test(value)) {
+        emailInput.classList.remove('valid');
+        emailInput.classList.add('invalid');
+        emailError.textContent = 'Please enter a valid email address.';
+        return false;
+    }
+
+    emailInput.classList.remove('invalid');
+    emailInput.classList.add('valid');
+    emailError.textContent = '';
+    return true;
+}
+
+/**
+ * Validates the Password field
+ */
+
 function validateUsername() {
     const value = usernameInput.value.trim();
 
     if (value === '') {
-        // Clear styles and error message when input is empty
         usernameInput.classList.remove('valid', 'invalid');
-        errorMsg.textContent = '';
+        usernameError.textContent = '';
         return false;
     }
 
     if (value.length < MIN_LENGTH) {
-        // Apply invalid state and error message
         usernameInput.classList.remove('valid');
         usernameInput.classList.add('invalid');
-        errorMsg.textContent = `Username must be at least ${MIN_LENGTH} characters long.`;
+        usernameError.textContent = `Username must be at least ${MIN_LENGTH} characters long.`;
         return false;
     }
 
-    // Apply valid state
     usernameInput.classList.remove('invalid');
     usernameInput.classList.add('valid');
-    errorMsg.textContent = '';
+    usernameError.textContent = '';
     return true;
 }
+/**
+ * Validates the Password field
+ */
+function validatePassword() {
+    const value = passwordInput.value;
 
+    if (value === '') {
+        passwordInput.classList.remove('valid', 'invalid');
+        passwordError.textContent = '';
+        return false;
+    }
+
+    if (value.length < MIN_PASSWORD_LENGTH) {
+        passwordInput.classList.remove('valid');
+        passwordInput.classList.add('invalid');
+        passwordError.textContent = `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`;
+        return false;
+    }
+
+    passwordInput.classList.remove('invalid');
+    passwordInput.classList.add('valid');
+    passwordError.textContent = '';
+    return true;
+}
+// Toggle password visibility (Show / Hide)
+togglePasswordBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.getAttribute('type') === 'password';
+    passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+    togglePasswordBtn.textContent = isPassword ? 'Hide' : 'Show';
+});
 // Live validation on every keystroke
 usernameInput.addEventListener('input', validateUsername);
+emailInput.addEventListener('input', validateEmail);
+passwordInput.addEventListener('input', validatePassword);
 
 // Handle form submission
 userForm.addEventListener('submit', (event) => {
     // Prevent the default browser form submission (page reload)
     event.preventDefault();
 
-    const isValid = validateUsername();
+    const isUsernameValid = validateUsername();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
 
-    if (isValid) {
+    if (isUsernameValid && isEmailValid && isPasswordValid) {
         const username = usernameInput.value.trim();
 
         // Display animated greeting message
-        greetingDisplay.textContent = `Welcome, ${username}! ✨`;
+        greetingDisplay.textContent = `Registration Successful! Welcome, ${username}! ✨`;
         greetingDisplay.style.color = '#10b981'; // Neon green success color
 
         // Reset form inputs and styles after submission
         userForm.reset();
-        usernameInput.classList.remove('valid', 'invalid');
+        usernameInput.classList.remove('valid');
+        emailInput.classList.remove('valid');
+        passwordInput.classList.remove('valid');
     } else {
-        // Highlight input if user submits without valid data
-        usernameInput.classList.add('invalid');
-        errorMsg.textContent = `Please enter at least ${MIN_LENGTH} characters before submitting.`;
+        greetingDisplay.textContent = 'Please fix the errors above.';
+        greetingDisplay.style.color = '#f43f5e';
     }
 });
