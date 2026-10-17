@@ -1,0 +1,121 @@
+/* Dark background for maximum glow contrast */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #404b66;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Rich Circular Dark Card */
+.card {
+    background: linear-gradient(145deg, #1e293b, #b3b7c1);
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    /* Fully circular container */
+
+    /* Dual shadow layer for 3D depth and neon glow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(244, 165, 165, 0.846);
+
+    /* Flexbox layout to keep content centered */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(104, 75, 75, 0.6),
+        0 0 30px rgba(183, 183, 217, 0.4);
+}
+
+/* Stylized Buttons for Dark Theme */
+button {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 25px;
+    /* Pill-shaped buttons */
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+}
+
+/* Reset / Return button styling */
+#backBtn {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    display: none;
+    /* Hidden by default until activated */
+}
+
+#backBtn:hover {
+    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.5);
+}
+
+/* Heading display container */
+h1 {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Prevent empty h1 from occupying vertical space */
+h1:empty {
+    display: none;
+}
+
+/* Animated Glowing Neon Letters */
+.glowing-letter {
+    display: inline-block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    /* Multi-layered text-shadow for glowing neon effect */
+    text-shadow:
+        0 0 5px #ff007f,
+        0 0 10px #ff007f,
+        0 0 20px #ff007f,
+        0 0 40px #ff007f;
+    animation: glowAndRainbow 2.5s linear infinite;
+}
+
+/* Keyframe animation for continuous hue cycle and slight float */
+@keyframes glowAndRainbow {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+        /* Floating wave effect */
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+        transform: translateY(0);
+    }
+}
