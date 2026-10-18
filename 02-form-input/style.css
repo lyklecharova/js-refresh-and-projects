@@ -208,14 +208,15 @@ input.invalid {
 }
 
 /* =========================================
-   Light Mode Theme Overrides (Fixed Contrast)
+   2. Light Mode Theme Overrides
    ========================================= */
+
 body.light-theme {
     background-color: #f1f5f9 !important;
     color: #0f172a !important;
 }
 
-/* Remove gradient and make the card snow-white */
+/* Remove gradient background and force solid white card */
 body.light-theme .card,
 body.light-theme #formCard,
 body.light-theme #dashboardCard {
@@ -225,7 +226,7 @@ body.light-theme #dashboardCard {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Dark title and label colors */
+/* High contrast typography for light background */
 body.light-theme .card h2,
 body.light-theme h1,
 body.light-theme h2,
@@ -236,7 +237,7 @@ body.light-theme .subtitle {
     color: #0f172a !important;
 }
 
-/* Light input fields with a clear dark text */
+/* Light input fields with clear text */
 body.light-theme input[type="text"],
 body.light-theme input[type="email"],
 body.light-theme input[type="password"],
@@ -250,20 +251,33 @@ body.light-theme input::placeholder {
     color: #64748b !important;
 }
 
-/* Repair the Show/Hide buttons for light theme */
+/* High-contrast password toggle buttons for light mode */
 body.light-theme button.toggle-btn,
 body.light-theme #togglePassword,
 body.light-theme #toggleConfirmPassword {
     color: #4f46e5 !important;
 }
 
-/* Fixed Position Theme Button */
+/* High-contrast validation borders for light mode */
+body.light-theme input.valid {
+    border: 2px solid #059669 !important;
+    box-shadow: 0 0 8px rgba(5, 150, 105, 0.35) !important;
+}
+
+body.light-theme input.invalid {
+    border: 2px solid #e11d48 !important;
+    box-shadow: 0 0 8px rgba(225, 29, 72, 0.35) !important;
+}
+
+/* Fixed Theme Toggle Button in Top-Right Corner */
+#themeToggle,
 .theme-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
     width: auto !important;
-    padding: 10px 18px;
-    font-size: 0.9rem;
-    z-index: 1000;
+    min-width: 130px;
+    padding: 10px 18px !important;
+    font-size: 0.9rem !important;
+    z-index: 9999 !important;
 }
