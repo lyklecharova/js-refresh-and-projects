@@ -62,6 +62,20 @@ body {
     box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
 }
 
+/* Checkbox alignment */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    cursor: pointer;
+}
+
 /* Dynamic Validation States (Valid / Invalid) */
 .input-group input.valid {
     border-color: #10b981;
@@ -71,7 +85,6 @@ body {
 
 .input-group input.invalid {
     border-color: #f43f5e;
-    /* Neon red/pink */
     box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
 }
 
@@ -83,6 +96,15 @@ body {
     min-height: 18px;
     /* Reserves vertical space to prevent layout jump */
     transition: opacity 0.2s ease;
+}
+
+/* Greeting display message */
+.greeting-display {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.4;
 }
 
 /* Primary action button */
@@ -105,6 +127,7 @@ button:hover {
     box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
 }
 
+
 /* Disabled button state */
 button:disabled {
     background: #475569;
@@ -112,14 +135,6 @@ button:disabled {
     transform: none;
     box-shadow: none;
     opacity: 0.6;
-}
-
-/* Animated output greeting */
-.greeting-display {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 700;
 }
 
 /* Password field wrapper for positioning the toggle button */
@@ -133,7 +148,6 @@ button:disabled {
 .password-wrapper input {
     width: 100%;
     padding-right: 75px !important;
-    /* Space for the show/hide button */
 }
 
 button.toggle-btn,
@@ -184,11 +198,6 @@ button.toggle-btn:hover,
 }
 
 /* Validation Feedback States */
-input.valid {
-    border-color: #10b981 !important;
-    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
-}
-
 input.invalid {
     border-color: #f43f5e !important;
     box-shadow: 0 0 8px rgba(244, 63, 94, 0.3);
@@ -196,4 +205,65 @@ input.invalid {
 
 .hidden {
     display: none !important;
+}
+
+/* =========================================
+   Light Mode Theme Overrides (Fixed Contrast)
+   ========================================= */
+body.light-theme {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+/* Remove gradient and make the card snow-white */
+body.light-theme .card,
+body.light-theme #formCard,
+body.light-theme #dashboardCard {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Dark title and label colors */
+body.light-theme .card h2,
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme .input-group label,
+body.light-theme .checkbox-group label,
+body.light-theme .subtitle {
+    color: #0f172a !important;
+}
+
+/* Light input fields with a clear dark text */
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="password"],
+body.light-theme .input-group input {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-theme input::placeholder {
+    color: #64748b !important;
+}
+
+/* Repair the Show/Hide buttons for light theme */
+body.light-theme button.toggle-btn,
+body.light-theme #togglePassword,
+body.light-theme #toggleConfirmPassword {
+    color: #4f46e5 !important;
+}
+
+/* Fixed Position Theme Button */
+.theme-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: auto !important;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    z-index: 1000;
 }

@@ -224,16 +224,28 @@ if (logoutBtn) {
     });
 }
 
-// Theme toggle functionality
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-
-    if (document.body.classList.contains('light-theme')) {
+// Theme toggle functionality with persistent state
+if (themeToggle) {
+    // Check for previously saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
         themeToggle.textContent = '☀️ Light Mode';
-    } else {
-        themeToggle.textContent = '🌙 Dark Mode';
     }
-});
+
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+
+        if (isLight) {
+            themeToggle.textContent = '☀️ Light Mode';
+            localStorage.setItem('theme', 'light');
+        } else {
+            themeToggle.textContent = '🌙 Dark Mode';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
 
 // Enable or disable the submit button based on the checkbox state
 termsCheckbox.addEventListener('change', () => {
@@ -275,7 +287,8 @@ function validateConfirmPassword() {
         confirmPasswordInput.classList.remove('valid');
         if (confirmVal !== '') {
             confirmPasswordInput.classList.add('invalid');
-            if (confirmPasswordError) confirmPasswordError.textContent = 'Passwords do not match.';
+            if (confirmPasswordError)
+                confirmPasswordError.textContent = 'Passwords do not match.';
         } else {
             confirmPasswordInput.classList.remove('invalid');
             if (confirmPasswordError) confirmPasswordError.textContent = '';
