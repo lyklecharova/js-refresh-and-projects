@@ -7,8 +7,11 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="card">
+        <div class="card" id="formCard">
             <h2>Interactive Input</h2>
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+
             <form id="userForm" novalidate>
                 <!-- Username Group -->
                 <div class="input-group">
@@ -42,15 +45,70 @@
                             placeholder="Enter a strong password..."
                             required
                         />
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="toggle-btn"
+                        >
+                            Show
+                        </button>
                     </div>
 
-                    <button type="button" id="togglePassword">Show</button>
+                    <div class="strength-bar-container">
+                        <div id="strengthBar" class="strength-bar"></div>
+                    </div>
                     <small class="error-msg" id="passwordError"></small>
                 </div>
 
-                <button type="submit" id="submitBtn">Register</button>
+                <!-- Confirm Password Group -->
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password..."
+                            required
+                        />
+                        <button
+                            type="button"
+                            id="toggleConfirmPassword"
+                            class="toggle-btn"
+                        >
+                            Show
+                        </button>
+                    </div>
+
+                    <small class="error-msg" id="confirmPasswordError"></small>
+                </div>
+                <!-- Terms & Conditions Checkbox -->
+                <div class="checkbox-group">
+                    <input type="checkbox" id="termsCheckbox" />
+                    <label for="termsCheckbox"
+                        >I agree to the Terms & Conditions</label
+                    >
+                </div>
+                <button type="submit" id="submitBtn" disabled>Register</button>
             </form>
             <div id="greetingDisplay" class="greeting-display"></div>
+        </div>
+        <!-- Dashboard / To-Do Section (Hidden initially) -->
+        <div class="card hidden" id="dashboardCard">
+            <h2 id="welcomeHeader">Welcome!</h2>
+            <p class="subtitle">Your Personal Workspace</p>
+
+            <div class="todo-input-group">
+                <input
+                    type="text"
+                    id="todoInput"
+                    placeholder="Add a new task..."
+                />
+                <button id="addTodoBtn">Add</button>
+            </div>
+
+            <ul id="todoList" class="todo-list"></ul>
+
+            <button id="logoutBtn" class="logout-btn">Logout</button>
         </div>
         <script src="script.js"></script>
     </body>

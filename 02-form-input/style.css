@@ -193,3 +193,7 @@ input.invalid {
     border-color: #f43f5e !important;
     box-shadow: 0 0 8px rgba(244, 63, 94, 0.3);
 }
+
+.hidden {
+    display: none !important;
+}
