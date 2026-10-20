@@ -32,10 +32,8 @@ const termsCheckbox = document.getElementById('termsCheckbox');
 const greetingDisplay = document.getElementById('greetingDisplay');
 const themeToggle = document.getElementById('themeToggle');
 
-// Validation rule configuration
-const MIN_LENGTH = 3;
-const MIN_PASSWORD_LENGTH = 6;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Import validation configuration constants
+import { MIN_LENGTH, MIN_PASSWORD_LENGTH, EMAIL_REGEX } from './config.js';
 
 // Initialize To-Do elements
 const todoInput = document.getElementById('todoInput');
