@@ -224,12 +224,16 @@ if (logoutBtn) {
     });
 }
 
+
 // Theme toggle functionality with persistent state
 if (themeToggle) {
     // Check for previously saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
+        themeToggle.textContent = '🌙 Dark Mode';
+    } else {
+        document.body.classList.remove('light-theme');
         themeToggle.textContent = '☀️ Light Mode';
     }
 
@@ -238,10 +242,10 @@ if (themeToggle) {
         const isLight = document.body.classList.contains('light-theme');
 
         if (isLight) {
-            themeToggle.textContent = '☀️ Light Mode';
+            themeToggle.textContent = '🌙 Dark Mode';
             localStorage.setItem('theme', 'light');
         } else {
-            themeToggle.textContent = '🌙 Dark Mode';
+            themeToggle.textContent = '☀️ Light Mode';
             localStorage.setItem('theme', 'dark');
         }
     });

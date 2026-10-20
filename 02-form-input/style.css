@@ -88,24 +88,7 @@ body {
     box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
 }
 
-/* Error message styling */
-.error-msg {
-    color: #f43f5e;
-    font-size: 0.8rem;
-    margin-top: 6px;
-    min-height: 18px;
-    /* Reserves vertical space to prevent layout jump */
-    transition: opacity 0.2s ease;
-}
 
-/* Greeting display message */
-.greeting-display {
-    margin-top: 15px;
-    font-weight: 600;
-    text-align: center;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
 
 /* Primary action button */
 button {
@@ -280,4 +263,148 @@ body.light-theme input.invalid {
     padding: 10px 18px !important;
     font-size: 0.9rem !important;
     z-index: 9999 !important;
+}
+
+
+/* =========================================
+   3. Dashboard & To-Do List Styles
+   ========================================= */
+
+/* Subtitle contrast and typography */
+.card .subtitle {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+/* Input group container for To-Do field and Add button */
+.todo-input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+/* Styled input field for new task entry */
+.todo-input-group input {
+    flex: 1;
+    background-color: #0f172a;
+    border: 2px solid #334155;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.todo-input-group input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+/* Compact Add Task button */
+#addTodoBtn {
+    width: auto !important;
+    padding: 12px 20px;
+    white-space: nowrap;
+}
+
+/* Task list container */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Individual task item styling */
+.todo-list li {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #334155;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+}
+
+/* Delete action button inside task items */
+.todo-list li button {
+    width: auto !important;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    background: #f43f5e !important;
+    box-shadow: none !important;
+}
+
+/* Logout action button styling */
+.logout-btn {
+    background: transparent !important;
+    border: 2px solid #f43f5e !important;
+    color: #f43f5e !important;
+    box-shadow: none !important;
+    margin-top: 10px;
+}
+
+.logout-btn:hover {
+    background: #f43f5e !important;
+    color: #ffffff !important;
+}
+
+/* =========================================
+   4. Comprehensive Light Mode Overrides
+   ========================================= */
+
+/* Force light background for the entire page */
+body.light-theme {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+/* Force solid white background and crisp border for cards in Light Mode */
+body.light-theme .card,
+body.light-theme #formCard,
+body.light-theme #dashboardCard {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Subtitle and header typography contrast */
+body.light-theme .subtitle,
+body.light-theme .card .subtitle {
+    color: #475569 !important;
+}
+
+body.light-theme .card h1,
+body.light-theme .card h2,
+body.light-theme .card h3 {
+    color: #0f172a !important;
+}
+
+/* Light Mode inputs for To-Do form */
+body.light-theme input[type="text"],
+body.light-theme input[type="email"],
+body.light-theme input[type="password"],
+body.light-theme .todo-input-group input {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-theme input::placeholder {
+    color: #64748b !important;
+}
+
+/* Light Mode list item overrides */
+body.light-theme .todo-list li {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
 }
