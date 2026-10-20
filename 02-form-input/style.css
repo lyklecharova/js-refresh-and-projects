@@ -408,3 +408,23 @@ body.light-theme .todo-list li {
     border: 1px solid #e2e8f0 !important;
     color: #0f172a !important;
 }
+
+/* Expand Dashboard card layout for better readability */
+#dashboardCard {
+    width: 100%;
+    max-width: 550px;
+}
+
+/* Styling for the empty task state message */
+.empty-msg {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+/* Light mode override for empty task message */
+body.light-theme .empty-msg {
+    color: #94a3b8 !important;
+}

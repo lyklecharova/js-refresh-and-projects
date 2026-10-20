@@ -37,6 +37,11 @@ const MIN_LENGTH = 3;
 const MIN_PASSWORD_LENGTH = 6;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Initialize To-Do elements
+const todoInput = document.getElementById('todoInput');
+const addTodoBtn = document.getElementById('addTodoBtn');
+const todoList = document.getElementById('todoList');
+
 /**
  * Validates the Username field
  */
@@ -224,7 +229,6 @@ if (logoutBtn) {
     });
 }
 
-
 // Theme toggle functionality with persistent state
 if (themeToggle) {
     // Check for previously saved theme preference
@@ -341,3 +345,78 @@ userForm.addEventListener('submit', (event) => {
         greetingDisplay.style.color = '#f43f5e';
     }
 });
+
+// Load saved tasks from localStorage on page initialization
+document.addEventListener('DOMContentLoaded', () => {
+    loadTasks();
+});
+
+// Helper function to update empty state visibility
+function updateEmptyState() {
+    let emptyMsg = document.getElementById('emptyMsg');
+    const tasks = todoList.querySelectorAll('li');
+
+    if (tasks.length === 0) {
+        if (!emptyMsg) {
+            emptyMsg = document.createElement('p');
+            emptyMsg.className = 'empty-msg';
+            emptyMsg.id = 'emptyMsg';
+            emptyMsg.textContent = 'No tasks added yet. Start by creating one!';
+            todoList.appendChild(emptyMsg);
+        }
+        emptyMsg.style.display = 'block';
+    } else if (emptyMsg) {
+        emptyMsg.style.display = 'none';
+    }
+}
+
+// Function to render a task item in the DOM
+function createTaskElement(taskText) {
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+        li.remove();
+        saveTasks();
+        updateEmptyState();
+    });
+
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li);
+}
+
+// Add task event listener
+if (addTodoBtn && todoInput) {
+    addTodoBtn.addEventListener('click', () => {
+        const text = todoInput.value.trim();
+        if (text !== '') {
+            createTaskElement(text);
+            todoInput.value = '';
+            saveTasks();
+            updateEmptyState();
+        }
+    });
+}
+
+// Save current task list array to localStorage
+function saveTasks() {
+    const tasks = [];
+    todoList.querySelectorAll('li').forEach((li) => {
+        // Extract task text excluding the Delete button label
+        const taskText = li.childNodes[0].textContent;
+        tasks.push(taskText);
+    });
+    localStorage.setItem('userTasks', JSON.stringify(tasks));
+}
+
+// Retrieve and display saved tasks from localStorage
+function loadTasks() {
+    const saved = localStorage.getItem('userTasks');
+    if (saved) {
+        const tasks = JSON.parse(saved);
+        tasks.forEach((task) => createTaskElement(task));
+    }
+    updateEmptyState();
+}

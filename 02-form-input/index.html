@@ -105,8 +105,12 @@
                 />
                 <button id="addTodoBtn">Add</button>
             </div>
-
-            <ul id="todoList" class="todo-list"></ul>
+            <!-- Task list container with default empty state message -->
+            <ul id="todoList" class="todo-list">
+                <p class="empty-msg" id="emptyMsg">
+                    No tasks added yet. Start by creating one!
+                </p>
+            </ul>
 
             <button id="logoutBtn" class="logout-btn">Logout</button>
         </div>
